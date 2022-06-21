@@ -6,12 +6,7 @@ const { userAuthenticated } = require('../middleware/index')
 
 const home = async (req, res) => {
   try { 
-    console.log("========> home buddy!")
-    console.log('In try catch ', req.headers)
-    console.log('about to find blog ')
     const blogs = await Blog.find({})
-    console.log('blogs are ', blogs);
-    console.log('about to render ', { blogs, user: userOrDefault(req), authenticated: userAuthenticated(req) })
     res.render('home', { blogs, user: userOrDefault(req), authenticated: userAuthenticated(req) })
   } catch (error) {
     console.log('error in home is ', error)
@@ -55,28 +50,12 @@ const exploreBlog = async (req, res, next) => {
     if (routesToRedirectTo.includes(blogId)) {
       res.render(`blogs/${blogId}`)
     }
-    console.log("========> exploreBlog buddy!")
-    console.log('In try of exloreBlog ', req.headers)
-    console.log('about to find comments ')
     let comments = await Comment.find({ blog_id: blogId })
     console.log('comments are ', comments)
     let blog = await Blog.findById(blogId).lean()
     console.log('blog in expoloreBlog is ', blog)
     let userId = blog.user_id
     let createdByUser = await User.findById(userId).lean()
-
-    console.log('user is ', createdByUser)
-    console.log('about to render ', {
-      title: 'my explore page',
-      blog: {
-        ...blog,
-        user: createdByUser,
-      },
-      user: userOrDefault(req),
-      authenticated: userAuthenticated(req),
-      comments,
-    })
-
     res.render('exploreBlog', {
       title: 'my explore page',
       blog: {
