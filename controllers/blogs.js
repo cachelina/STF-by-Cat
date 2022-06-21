@@ -50,31 +50,46 @@ const createBlog = (req, res) => {
 const routesToRedirectTo = ['new']
 
 const exploreBlog = async (req, res, next) => {
-  let blogId = req.params.id
-  if (routesToRedirectTo.includes(blogId)) {
-    res.render(`blogs/${blogId}`)
-  }
-  let comments = await Comment.find({ blog_id: blogId})
-  let blog = await Blog.findById(blogId).lean()
-  let userId = blog.user_id 
-  let createdByUser = await User.findById(userId).lean()
-  const data = {
-    blog: {
-      ...blog,
-      user: createdByUser,
+  try {
+    let blogId = req.params.id
+    if (routesToRedirectTo.includes(blogId)) {
+      res.render(`blogs/${blogId}`)
     }
-  }
+    console.log("========> exploreBlog buddy!")
+    console.log('In try of exloreBlog ', req.headers)
+    console.log('about to find comments ')
+    let comments = await Comment.find({ blog_id: blogId })
+    console.log('comments are ', comments)
+    let blog = await Blog.findById(blogId).lean()
+    console.log('blog in expoloreBlog is ', blog)
+    let userId = blog.user_id
+    let createdByUser = await User.findById(userId).lean()
 
-  res.render('exploreBlog', { 
-    title: 'my explore page', 
-    blog: { 
-      ...blog, 
-      user: createdByUser,
-    }, 
-    user: userOrDefault(req), 
-    authenticated: userAuthenticated(req), 
-    comments,
-  })
+    console.log('user is ', createdByUser)
+    console.log('about to render ', {
+      title: 'my explore page',
+      blog: {
+        ...blog,
+        user: createdByUser,
+      },
+      user: userOrDefault(req),
+      authenticated: userAuthenticated(req),
+      comments,
+    })
+
+    res.render('exploreBlog', {
+      title: 'my explore page',
+      blog: {
+        ...blog,
+        user: createdByUser,
+      },
+      user: userOrDefault(req),
+      authenticated: userAuthenticated(req),
+      comments,
+    })
+  } catch(err) {
+    console.log("err is in exploreBlog ", err )
+  }
 }
 
 
