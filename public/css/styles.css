@@ -1,0 +1,101 @@
+body {
+  width: 100%; 
+}
+
+#blue-btn {
+  background-color: blue-btn;
+}
+
+.blog-card {
+  box-shadow: 0 1px 3px rgb(0 0 0 / 10%);
+  border-radius: 12px;
+  padding: 20px;
+  position: relative; 
+}
+
+.blog-settings {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+}
+
+.blog-card-text {
+  line-height: 1.9;
+}
+
+
+.primary-bg-color {
+  background-color: #0F2DF0;
+}
+
+.primary-color {
+  color: #0F2DF0;
+}
+
+.accent-bg-color {
+  background-color: #3F57F3;
+}
+.accent-color {
+  color: #3F57F3;
+}
+
+.post-button {
+  color: white;
+  font-weight: bold;
+  font-family: Lato;
+  padding: 8px 13px;
+  text-transform: uppercase;
+}
+
+.post-button:hover {
+  color: white; 
+  background-color: #0F2DF0;
+}
+
+.little-person {
+  color: #717171;
+}
+
+.little-trash {
+  color: #F66166;
+}
+
+.blog-navbar {
+  padding: 0px 40px;
+}
+
+.blog-dropdown-menu[data-bs-popper] {
+  left: -140px;
+  margin-top: 20px;
+}
+
+.no-text-decoration {
+  text-decoration: none;;
+}
+
+.post-modal-header {
+  position: relative;
+}
+
+.close-modal-button {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  position: absolute;
+}
+
+.delete-modal-button {
+  background-color: #FF090C;
+  color: white;
+  padding: 8px 13px;
+}
+
+#publish-edit-button:hover {
+  color: white;
+  background-color: #0F2DF0;
+}
+
+add-comment-button:hover {
+  color: white;
+  background-color: #0F2DF0;
+}

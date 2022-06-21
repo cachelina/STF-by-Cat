@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head.ejs')%>
+
+<body>
+  <%- include('./partials/nav.ejs')%>
+
+  <br>
+    <div class="form-group">
+      <div class="container col-md-6 mb-4 ">
+      <div class="mb-3">
+        <label for="formGroupExampleInput" class="form-label">Blog Title</label>
+        <input type="text" class="blog-title form-control" id="formGroupExampleInput">
+      </div>
+      <div class="form-group">
+        <label for="formGroupExampleTextarea3" class="form-label">Blog Content</label>
+        <textarea type="text" class="form-control blog-entry" id="exampleFormControlTextarea3" rows="15" placeholder="Begin Writing"></textarea>
+        <button class="btn btn-primary" type="submit" id="publish-button">Publish</button>
+      </div>
+    </div>
+  </div>
+
+
+<script>
+  const publishButton = document.getElementById('publish-button')
+    publishButton.addEventListener('click', (e) => {
+      e.preventDefault()
+      const submittedTitle = document.getElementsByClassName('blog-title')[0].value
+      const submittedEntry = document.getElementsByClassName('blog-entry')[0].value
+      let options = {
+        method: 'POST', 
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          title: submittedTitle,
+          entry: submittedEntry
+        }) 
+      }
+      fetch('/blogs', options)
+        .then((res) => {
+          let status = res.status
+          if (status === 200) {
+            window.location.href = '/'
+          } else {
+            console.log(`we have an error`, res.error)
+            }
+        })
+    })
+   
+
+</script>
+</html>
+
+

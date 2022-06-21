@@ -1,0 +1,15 @@
+<% if (authenticated) { %>
+  <div class="card container col-sm-12 col-md-8 d-flex mx-auto flex-column mt-5">
+    <h3 class="mt-4 d-flex justify-content-center card-header">Add a Comment</h3>
+    <div class="card-body">
+      <form class="text-dark p-4" id="add-comment-form" method="POST" action="/blogs/<%= blog._id %>/comments">
+        <div class="mb-3 w-100 p-3">
+          <textarea type="text" name="content" class="card-text comment-content form-control" rows="5"
+            id="formGroupExampleInput2" placeholder="Share comments here!"></textarea>
+          <button class="btn d-flex mx-auto primary-bg-color btn-lg btn-block add-comment-button" id="publish-comment-btn"
+            style="font-family: Lato; color: whitesmoke; margin-left: 25rem; margin-top: 1rem;">Add Comment</button>
+        </div>
+      </form>
+    </div>
+  </div>
+<% } %> 

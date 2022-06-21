@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand blog-navbar font-weight-bolder" href="/">
+      <h5 style="font-family: Lato;">
+        <small class="text-muted">🍑</small>
+       STF <br>
+        <small class="blockquote-footer"><em>by Cat</em></small>
+      </h5>
+    </a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      </ul>
+    </div>
+    <a href="/blogs/new">
+      <button class="btn me-3 primary-bg-color post-button" id="create-blog-button"
+        style="font-family: Lato;">Post</button>
+    </a>
+    <div class="dropdown">
+      <i class="fa-solid fa-circle-user fa-2x little-person" id="dropdownMenu2" data-bs-toggle="dropdown"></i>
+      <ul class="dropdown-menu blog-dropdown-menu" aria-labelledby="dropdownMenu2">
+        <% if (authenticated) { %>
+          <li>
+            <form method="POST" action="/logout">
+              <button type="submit" class="btn btn-link no-text-decoration" style="font-family: Lato;">Logout</button>
+            </form>
+          </li>
+        <% } else { %> 
+        <li>
+          <form action="/login">
+            <button type="submit" class="btn btn-link no-text-decoration" style="font-family: Lato;">Login</button>
+          </form>
+        </li>
+        <% } %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

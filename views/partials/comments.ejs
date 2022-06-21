@@ -1,0 +1,23 @@
+<div class="col-sm-12 col-md-8 d-flex mx-auto flex-column">
+  <% if (comments.length >= 1) { %>
+    <h4 class="mb-0 mt-5">Recent comments</h4>
+    <% comments.forEach(function(comments) { %>
+      <div class="card text-dark mt-3">
+        <div class="card-body p-4">
+          <div class="d-flex flex-start">
+            <img class="rounded-circle shadow-1-strong me-3" src="/images/myfitnesspal.jpg" alt="avatar"
+              width="60" height="60" />
+            <div>
+              <h6 class="fw-bold mb-1">Gaby</h6>
+              <div class="d-flex align-items-center mb-3">
+              </div>
+              <p class="mb-0">
+                <%= comments.content %>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% })%>
+  <% } %>
+</div>

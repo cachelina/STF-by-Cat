@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head.ejs')%>
+</head>
+<body>
+  <%- include('./partials/nav.ejs')%>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-8 mx-auto">
+        <div class="card blog-card mt-5 d-flex mx-auto">
+          <div class="card-body">
+            <div class="card-text blog-card-text">
+              <form id="form" action="/blogs/<%=blog._id%>?_method=PUT" method="POST">
+                <label for="formGroupExampleInput" class="form-label">Blog Title</label>
+                <input type="text" name="title" class="form-control" id="formGroupExatextarea" value="<%= blog.title %>" name="title">
+                <label for="formGroupExampleInput" class="form-label">Blog Content</label>
+                <textarea type="text" class="form-control" name="entry" id="formGroupExampleInput" name="entry" rows="9"><%= blog.entry %></textarea>
+                <button type="submit" class="btn primary-bg-color btn-lg btn-block d-block mx-auto" id="publish-edit-button"
+                  style="font-family: Lato; color: whitesmoke;">Publish</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

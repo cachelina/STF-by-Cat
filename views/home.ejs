@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs')%>
+  <body style="font-family: Lato;"> 
+    <%- include('./partials/nav.ejs')%> 
+    <br>
+
+    <div class="container-xl rounded col-md-6 mb-4">
+      <blockquote class="text-center">
+        <h3 style="font-family: Lato; font-weight: bold;"> 
+          My Journey to Slim Thick and Fit 🎢
+        </h3>
+      </blockquote>
+    </div>
+
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-sm-8 mx-auto">
+          <% if (blogs.length >= 1) { %>
+            <% blogs.forEach(function(blog, index) { %>
+              <div class="card mb-3">
+                <div class="row g-0">
+                  <div class="col-md-4">
+                    <img src="/images/myfitnesspal.jpg" class="img-fluid rounded-start" alt="...">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <a class="card-title" style="text-decoration: none; color: #506CF0" href="/blogs/<%= blog._id %>">
+                        <h5> <%= blog.title %></h5>
+                      </a>
+                      <p class="blog-entry card-text d-inline-block text-wrap text-truncate" style="max-width: 800px; max-height: 100px;">
+                        <%= blog.entry %>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% })%>
+          <% } %>
+        </div>
+      </div>
+    </div> 
+  </body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head.ejs') %>
+
+<body>
+  <%- include('./partials/nav.ejs')%>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-8 d-flex mx-auto">
+        <div class="card blog-card mt-5">
+
+        <% if (authenticated) { %>
+          <div class="dropdown">
+            <i class="fa-solid fa-gear blog-settings" id="dropdownMenu2" data-bs-toggle="dropdown"></i>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+              <li><a class="dropdown-item" href="/blogs/<%=blog._id%>/edit">
+                Edit</a></li>
+              <li>
+                <button type="button" class="btn btn-primary dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</button>
+              </li>
+            </ul>
+          </div>
+        <% } %>
+
+          <div class="card-body">
+            <h5 class="card-title"><%= blog.title %></h5>
+            <p class="card-subtitle"><small>Created by <%= blog.user.name %></small></p>
+            <p class="card-text blog-card-text mt-3"><%= blog.entry %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div> 
+    <% if (comments.length >= 1) { %>
+      <%- include('partials/comments', { comments: comments }); %>
+    <% } %> 
+    
+    <%- include('partials/add-comment', {authenticated: authenticated}) %> 
+  </div>
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <button type="button" class="btn-close ml-auto close-modal-button" data-bs-dismiss="modal" aria-label="Close"></button>
+        <i class="fa-solid fa-trash-can little-trash text-center mt-4"></i>
+        <div class="modal-header post-modal-header d-flex mx-auto">
+          <h5 class="modal-title mx-auto" id="exampleModalLabel"><strong>You are about to delete a post</strong></h5>
+        </div>
+        <div class="modal-body">
+          <p class="text-center" style="color: #A69C9D;"> 
+            <small>
+              This will delete the post from your page <br>
+              Are you sure?
+            </small>
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn" data-bs-dismiss="modal">Close</button>
+          <form class="" action="/blogs/<%=blog._id%>?_method=DELETE" method="POST">
+            <button class="dropdown-item btn delete-modal-button" type="submit" value="delete">Delete</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</body>
+
+<script>
+  const publishCommentBtn = document.querySelector('#publish-comment-btn')
+  
+  let pathname = window.location.pathname.split('/')
+  let blogId = pathname[2]
+  console.log('my pathname', blogId)
+
+  publishCommentBtn.addEventListener('click', (e) => {
+    e.preventDefault()
+    const comment = document.getElementsByClassName('comment-content')[0].value
+    let body = JSON.stringify({
+      content: comment
+    })
+    let options = {
+      method: 'POST', 
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: body,
+    }
+    fetch(`/blogs/${blogId}/comments`, options).then((res) => {
+      const { status } = res; 
+      if (status === 200) {
+        window.location.reload()
+      }
+      else {
+        console.error('An error has occurred ', res.error);
+      }
+    })
+    .catch((err) => {
+      console.error('An error has occurred ', err);
+    })
+  })
+</script>
+
+
+</html>
