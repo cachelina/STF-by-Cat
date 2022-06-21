@@ -30,7 +30,7 @@ router.get('/login-error', (req, res, next) => {
   res.render('login-error')
 })
 
-router.get('/oauth2callback', passport.authenticate(
+router.get('/oauth2callback',  passport.authenticate(
   'google',
   {
     successRedirect: '/',
@@ -46,9 +46,5 @@ router.post('/logout', (req, res, next) => {
 });
 
 
-//login button
-//on req.isAuthenticated() pass to view whether they're logged in. Create button 
-//logout button
-//have the app tell me if i'm logged in or not. 
 
 module.exports = router

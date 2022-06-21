@@ -3,7 +3,6 @@ const Blog = require("../models/blog")
 const userAuthenticated = (req) => {
   if (req.isAuthenticated) {
     let authenticated = req.isAuthenticated()
-    console.log(`hate it here`, authenticated)
     return authenticated
   }
   return false

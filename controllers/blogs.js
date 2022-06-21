@@ -6,9 +6,15 @@ const { userAuthenticated } = require('../middleware/index')
 
 const home = async (req, res) => {
   try { 
+    console.log("========> home buddy!")
+    console.log('In try catch ', req.headers)
+    console.log('about to find blog ')
     const blogs = await Blog.find({})
+    console.log('blogs are ', blogs);
+    console.log('about to render ', { blogs, user: userOrDefault(req), authenticated: userAuthenticated(req) })
     res.render('home', { blogs, user: userOrDefault(req), authenticated: userAuthenticated(req) })
   } catch (error) {
+    console.log('error in home is ', error)
     res.status(500).send({ message: error.message || "Error Occurred" })
   }
 }
