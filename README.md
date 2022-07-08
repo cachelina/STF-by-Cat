@@ -18,3 +18,16 @@
 > Only allows logged in users to post, edit, delete
 > Add a little trash with a modal
 > Add a little guy icon for the login/logout
+
+####Framework
+> Express (Version Number),
+
+####Languages 
+> Vanilla JS
+
+###Database 
+> MongoDB
+
+>How to contribute. 
+>Any tests on this? Pivotal
+>My own Best Practices for every project I work on. I have this list. Problem Solving Attacks, I took best practices from the world of JS bestpractices. and the thing i do is testing.......
